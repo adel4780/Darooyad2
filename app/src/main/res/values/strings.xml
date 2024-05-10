@@ -2,6 +2,23 @@
     <string name="app_name">DaroYad</string>
     <string name="app_name_fa">دارویاد</string>
     <string name="splash">برنامه‌ای برای یادآوری زمان مصرف داروها؛ برای کمک به بهبود هرچه سریع‌تر بیمار.</string>
+    <string name="onboarding_title_1">مصرف به موقع</string>
+    <string name="onboarding_description_1">مهمترین عامل سلامتی پس از تجویز پزشک،
+مصرف به موقع داروها است. دارویاد به شما کمک می‌کند
+هیچ‌کدام از زمان‌های تعیین شده را از دست ندهید.</string>
+    <string name="onboarding_title_2">پزشک همراه شما</string>
+    <string name="onboarding_description_2">با دارویاد دیگر با اطمینان
+داروهای خود را مصرف خواهید کرد.</string>
+    <string name="onboarding_title_3">درمان سخت نیست</string>
+    <string name="onboarding_description_3">اطلاعات برنامه را به‌صورت خودسر استفاده نکنید
+و حتماً با تجویز پزشک دارو مصرف کنید.
+برنامه تنها برای راهنمای بیشتر شما
+و سهولت در کار شما طراحی شده است.</string>
+    <string name="onboarding_title_4">تبلیغات</string>
+    <string name="onboarding_description_4">ما سعی کردیم کمترین میزان تبلیغات
+را در برنامه انجام دهیم. برنامه کاملاً رایگان است؛
+پس با معرفی به دوستان خود
+باعث ادامه حیات برنامه شوید.</string>
     <string name="reminder">یادآوری</string>
     <string name="reminder_empty">هنوز یادآوری ای وجود ندارد.</string>
     <string name="patient_name">نام بیمار:</string>

@@ -86,8 +86,10 @@ fun SplashPage(
             )
         }
         Image(
-            painter = painterResource(id = R.drawable.splash),
-            contentDescription = "splash"
+            painter = painterResource(
+                id = R.drawable.splash,
+            ),
+            contentDescription = "splash",
         )
     }
 }
