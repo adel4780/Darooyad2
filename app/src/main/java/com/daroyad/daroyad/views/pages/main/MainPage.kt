@@ -10,6 +10,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.navigation.NavHostController
 import com.daroyad.daroyad.views.pages.main.widgets.MainBottomBar
 import com.daroyad.daroyad.views.pages.main.widgets.MainTopBar
 import com.daroyad.daroyad.views.pages.menu.MenuPage
@@ -18,6 +19,7 @@ import com.daroyad.daroyad.views.pages.reminder.ReminderPage
 
 @Composable
 fun MainPage(
+    navHostController: NavHostController,
     modifier: Modifier = Modifier,
 ) {
     var bottomBarIndex by remember { mutableIntStateOf(0) }

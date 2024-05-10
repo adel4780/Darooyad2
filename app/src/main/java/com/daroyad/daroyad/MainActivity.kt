@@ -17,6 +17,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import androidx.navigation.compose.rememberNavController
+import com.daroyad.daroyad.core.Nav
 import com.daroyad.daroyad.ui.theme.DaroYadTheme
 import com.daroyad.daroyad.views.pages.main.MainPage
 
@@ -30,7 +32,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainPage()
+                    Nav()
                 }
             }
         }
@@ -46,7 +48,7 @@ fun GreetingPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            MainPage()
+            Nav()
         }
     }
 }
