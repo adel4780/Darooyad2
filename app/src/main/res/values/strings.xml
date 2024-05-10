@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">DaroYad</string>
+    <string name="app_name_fa">دارویاد</string>
+    <string name="reminder">یادآوری</string>
+    <string name="reminder_empty">هنوز یادآوری ای وجود ندارد.</string>
+    <string name="patient_name">نام بیمار:</string>
+    <string name="time">ساعت:</string>
+    <string name="prescriptions">نسخه ها</string>
+    <string name="prescriptions_empty">هنوز نسخه ای وجود ندارد.</string>
+    <string name="visit_date">تاریخ مراجعه:</string>
+    <string name="menu">منو</string>
+    <string name="about_app_title">درباره برنامه</string>
+    <string name="about_app_text">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای </string>
+    <string name="about_us_title">درباره ما</string>
+    <string name="about_us_text">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای </string>
+    <string name="logout">خروج از برنامه</string>
+    <string name="splash_description">برنامه ­ای برای یادآوری زمان مصرف داروها؛
+برای کمک به بهبود هرچه سریع‌تر بیمار.</string>
+</resources>
