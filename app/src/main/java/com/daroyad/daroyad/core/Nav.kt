@@ -6,15 +6,20 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.daroyad.daroyad.views.pages.main.MainPage
+import com.daroyad.daroyad.views.pages.onboarding.OnboardingPage
 import com.daroyad.daroyad.views.pages.prescriptions.PrescriptionsPage
+import com.daroyad.daroyad.views.pages.splash.SplashPage
 
 @Composable
 fun Nav() {
     val navHostController = rememberNavController()
 
-    NavHost(navController = navHostController, startDestination = "main_page") {
-        composable("main_page") {
-            MainPage(navHostController)
+    NavHost(navController = navHostController, startDestination = "splash_page") {
+        composable("splash_page") {
+            SplashPage(navHostController)
+        }
+        composable("onboarding_page") {
+            OnboardingPage(navHostController)
         }
     }
 }
