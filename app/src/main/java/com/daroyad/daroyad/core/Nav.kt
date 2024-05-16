@@ -16,7 +16,7 @@ fun Nav() {
 
     NavHost(navController = navHostController, startDestination = "splash_page") {
         composable("splash_page") {
-            SplashPage(navHostController)
+            OnboardingPage(navHostController)
         }
         composable("onboarding_page") {
             OnboardingPage(navHostController)
