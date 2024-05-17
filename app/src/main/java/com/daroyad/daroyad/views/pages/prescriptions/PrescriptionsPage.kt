@@ -31,10 +31,11 @@ import com.daroyad.daroyad.views.pages.reminder.ReminderPage
 
 @Composable
 fun PrescriptionsPage(
+    navController: NavHostController,
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
-        floatingActionButton = { AddPrescription(modifier) },
+        floatingActionButton = { AddPrescription(modifier, navController) },
         containerColor = Color(0x00000000),
     ) { innerPadding ->
         Box(
@@ -45,7 +46,7 @@ fun PrescriptionsPage(
                     .fillMaxSize(),
             ) {
                 items(10) {
-                    Prescription()
+                    Prescription(navController = navController)
                 }
             }
         }
