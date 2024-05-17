@@ -18,7 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.daroyad.daroyad.R
-import com.daroyad.daroyad.views.pages.medicines.widgets.Medicine
+import com.daroyad.daroyad.views.pages.prescription.widgets.Medicine
 import com.daroyad.daroyad.views.pages.prescriptions.widgets.AddPrescription
 import com.daroyad.daroyad.views.widgets.MyButton
 import com.daroyad.daroyad.views.widgets.TopAppBar

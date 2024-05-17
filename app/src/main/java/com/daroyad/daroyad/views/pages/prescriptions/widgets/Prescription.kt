@@ -32,6 +32,7 @@ import androidx.navigation.NavHostController
 
 @Composable
 fun Prescription(
+    navController: NavHostController,
     modifier: Modifier = Modifier,
 ) {
     Surface(

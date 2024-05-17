@@ -28,9 +28,6 @@ fun Nav() {
         composable(PagesRouteEnum.MAIN.route) {
             MainPage(navHostController)
         }
-        composable("main_page") {
-            MainPage(navHostController)
-        }
         composable("show_prescriptions") {
             PrescriptionPage(navHostController, isShow = true)
         }
