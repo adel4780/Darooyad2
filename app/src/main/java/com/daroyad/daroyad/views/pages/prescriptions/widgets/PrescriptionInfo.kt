@@ -35,7 +35,7 @@ fun PrescriptionInfo(title: Int, info: String) {
         Text(
             text = stringResource(
                 id = title,
-            ),
+            )+":",
             style = TextStyle(
                 color = Color(0xFF2D89FF),
                 fontSize = 20.0.sp,
