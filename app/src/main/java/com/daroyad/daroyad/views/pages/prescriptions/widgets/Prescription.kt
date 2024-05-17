@@ -28,13 +28,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.daroyad.daroyad.R
 import com.daroyad.daroyad.views.pages.reminder.widgets.ReminderInfo
+import androidx.navigation.NavHostController
 
 @Composable
 fun Prescription(
     modifier: Modifier = Modifier,
 ) {
     Surface(
-        onClick = {},
+        onClick = { navController.navigate("show_prescriptions") },
         modifier = modifier.width(
             width = LocalConfiguration.current.screenWidthDp.dp,
         ),
