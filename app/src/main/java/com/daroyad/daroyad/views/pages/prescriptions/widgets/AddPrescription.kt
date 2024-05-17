@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.daroyad.daroyad.R
+import androidx.navigation.NavHostController
 import com.daroyad.daroyad.views.pages.main.widgets.MainBottomBar
 import com.daroyad.daroyad.views.pages.main.widgets.MainTopBar
 import com.daroyad.daroyad.views.pages.menu.MenuPage
@@ -26,7 +27,7 @@ import com.daroyad.daroyad.views.pages.reminder.ReminderPage
 @Composable
 fun AddPrescription(modifier: Modifier) {
     FloatingActionButton(
-        onClick = { },
+        onClick = { navController.navigate(route = "add_prescriptions") },
         containerColor = Color(0xFF2D89FF),
     ) {
         Icon(

@@ -44,7 +44,7 @@ fun MainPage(
         ) {
             when (bottomBarIndex) {
                 0 -> ReminderPage()
-                1 -> PrescriptionsPage()
+                1 -> PrescriptionsPage(navHostController)
                 2 -> MenuPage()
             }
         }
