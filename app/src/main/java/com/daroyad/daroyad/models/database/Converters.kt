@@ -1,9 +1,12 @@
 package com.daroyad.daroyad.models.database
 
 import androidx.room.TypeConverter
+import com.daroyad.daroyad.models.entities.Medicine
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
-import java.util.Date
+import java.util.*
 
 class Converters {
     @TypeConverter
@@ -17,12 +20,35 @@ class Converters {
     }
 
     @TypeConverter
-    fun fromLocalTime(value: String?): LocalTime? {
-        return value?.let { LocalTime.parse(it) }
+    fun fromMedicineList(medicines: List<Medicine>?): String? {
+        if (medicines == null) {
+            return null
+        }
+        val gson = Gson()
+        val type = object : TypeToken<List<Medicine>>() {}.type
+        return gson.toJson(medicines, type)
     }
 
     @TypeConverter
-    fun localTimeToString(time: LocalTime?): String? {
-        return time?.format(DateTimeFormatter.ISO_LOCAL_TIME)
+    fun toMedicineList(medicinesString: String?): List<Medicine>? {
+        if (medicinesString == null) {
+            return null
+        }
+        val gson = Gson()
+        val type = object : TypeToken<List<Medicine>>() {}.type
+        return gson.fromJson(medicinesString, type)
+    }
+
+    @TypeConverter
+    fun fromLocalTime(localTime: LocalTime?): String? {
+        return localTime?.format(DateTimeFormatter.ISO_LOCAL_TIME)
+    }
+
+    @TypeConverter
+    fun toLocalTime(localTimeString: String?): LocalTime? {
+        return localTimeString?.let {
+            LocalTime.parse(it, DateTimeFormatter.ISO_LOCAL_TIME)
+        }
     }
 }
+

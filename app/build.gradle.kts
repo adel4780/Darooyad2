@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
 }
 
 android {
@@ -70,9 +71,12 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.7.7")
     implementation("io.coil-kt:coil-compose:2.2.2")
 
-    implementation("androidx.room:room-runtime:2.5.1")
-    annotationProcessor("androidx.room:room-compiler:2.5.1")
-    implementation("androidx.room:room-ktx:2.5.1")
+    implementation("com.google.code.gson:gson:2.8.8")
+    implementation("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+    annotationProcessor("androidx.room:room-compiler:2.6.1")
+    //noinspection KaptUsageInsteadOfKsp
+    kapt("androidx.room:room-compiler:2.6.1")
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")

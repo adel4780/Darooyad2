@@ -6,7 +6,7 @@ import java.util.Date
 
 @Entity(tableName = "prescriptions")
 data class Prescription(
-    @PrimaryKey(autoGenerate = true) val id: Int = 1,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val doctorName: String,
     val patientName: String,
     val date: Date,

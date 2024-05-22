@@ -6,7 +6,7 @@ import java.util.Date
 
 @Entity(tableName = "reminders")
 data class Reminder(
-    @PrimaryKey(autoGenerate = true) val id: Int = 2,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val medicineName: String,
     val patientName: String,
     val time: Date
