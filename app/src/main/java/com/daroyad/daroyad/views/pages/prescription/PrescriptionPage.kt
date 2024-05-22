@@ -187,19 +187,43 @@ fun PrescriptionPage(
                 ) {
                     if (isShow || isEdit) {
                         item {
-                            Medicine(isEdit = isEdit, navController = navController)
-                            Medicine(isEdit = isEdit, navController = navController)
-                            Medicine(isEdit = isEdit, navController = navController)
-                            Medicine(isEdit = isEdit, navController = navController)
-                            Medicine(isEdit = isEdit, navController = navController)
-                            Medicine(isEdit = isEdit, navController = navController)
-                            Medicine(isEdit = isEdit, navController = navController)
-                            Medicine(isEdit = isEdit, navController = navController)
+                            com.daroyad.daroyad.views.pages.medicines.widgets.Medicine(
+                                isEdit = isEdit,
+                                navController = navController
+                            )
+                            com.daroyad.daroyad.views.pages.medicines.widgets.Medicine(
+                                isEdit = isEdit,
+                                navController = navController
+                            )
+                            com.daroyad.daroyad.views.pages.medicines.widgets.Medicine(
+                                isEdit = isEdit,
+                                navController = navController
+                            )
+                            com.daroyad.daroyad.views.pages.medicines.widgets.Medicine(
+                                isEdit = isEdit,
+                                navController = navController
+                            )
+                            com.daroyad.daroyad.views.pages.medicines.widgets.Medicine(
+                                isEdit = isEdit,
+                                navController = navController
+                            )
+                            com.daroyad.daroyad.views.pages.medicines.widgets.Medicine(
+                                isEdit = isEdit,
+                                navController = navController
+                            )
+                            com.daroyad.daroyad.views.pages.medicines.widgets.Medicine(
+                                isEdit = isEdit,
+                                navController = navController
+                            )
+                            com.daroyad.daroyad.views.pages.medicines.widgets.Medicine(
+                                isEdit = isEdit,
+                                navController = navController
+                            )
                         }
                     }
                     if (!isShow)
                         item {
-                            Medicine(
+                            com.daroyad.daroyad.views.pages.medicines.widgets.Medicine(
                                 isEdit = isEdit, isAdd = true, navController = navController,
                                 onClick = {
                                     navController.navigate("medicines_page")

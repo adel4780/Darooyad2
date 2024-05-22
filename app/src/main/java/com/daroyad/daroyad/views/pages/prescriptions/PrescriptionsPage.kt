@@ -35,7 +35,7 @@ fun PrescriptionsPage(
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
-        floatingActionButton = { AddPrescription(modifier, navController) },
+        floatingActionButton = { AddPrescription(navController, modifier) },
         containerColor = Color(0x00000000),
     ) { innerPadding ->
         Box(

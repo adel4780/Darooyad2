@@ -28,26 +28,26 @@ fun Nav() {
         composable(PagesRouteEnum.MAIN.route) {
             MainPage(navHostController)
         }
-        composable("show_prescriptions") {
+        composable(PagesRouteEnum.SHOW_PRESCRIPTIONS.route) {
             PrescriptionPage(navHostController, isShow = true)
         }
-        composable("add_prescriptions") {
+        composable(PagesRouteEnum.ADD_PRESCRIPTIONS.route) {
             PrescriptionPage(navHostController)
         }
-        composable("edit_prescriptions") {
+        composable(PagesRouteEnum.EDIT_PRESCRIPTIONS.route) {
             PrescriptionPage(navHostController, isEdit = true)
         }
-        composable("show_medicine") {
+        composable(PagesRouteEnum.SHOW_MEDICINE.route) {
             MedicinePage(navHostController, isShow = true)
         }
-        composable("add_medicine") {
+        composable(PagesRouteEnum.ADD_MEDICINE.route) {
             MedicinePage(navHostController)
         }
-        composable("edit_medicine") {
+        composable(PagesRouteEnum.EDIT_MEDICINE.route) {
             MedicinePage(navHostController, isEdit = true)
         }
-        composable("medicines_page") {
-            MedicinesPage(navHostController,)
+        composable(PagesRouteEnum.MEDICINES_PAGE.route) {
+            MedicinesPage(navHostController)
         }
     }
 }

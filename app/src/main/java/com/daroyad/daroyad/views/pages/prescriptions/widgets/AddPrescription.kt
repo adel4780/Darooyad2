@@ -25,7 +25,10 @@ import com.daroyad.daroyad.views.pages.prescriptions.widgets.PrescriptionsEmpty
 import com.daroyad.daroyad.views.pages.reminder.ReminderPage
 
 @Composable
-fun AddPrescription(modifier: Modifier) {
+fun AddPrescription(
+    navController: NavHostController,
+    modifier: Modifier
+) {
     FloatingActionButton(
         onClick = { navController.navigate(route = "add_prescriptions") },
         containerColor = Color(0xFF2D89FF),

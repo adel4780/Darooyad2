@@ -1,4 +1,4 @@
-package com.daroyad.daroyad.views.pages.prescription.widgets
+package com.daroyad.daroyad.views.pages.medicines.widgets
 
 
 import androidx.compose.foundation.clickable
@@ -33,13 +33,12 @@ import com.daroyad.daroyad.R
 @Composable
 fun Medicine(
     navController: NavHostController,
-    modifier: Modifier = Modifier,
     isEdit: Boolean,
     onClick: () -> Unit = {
         navController.navigate("show_medicine")
     },
     isAdd: Boolean = false,
-) {
+    ) {
     val text = if (isAdd) {
         stringResource(id = R.string.add_medicine)
     } else {
@@ -47,7 +46,7 @@ fun Medicine(
     }
     Surface(
         onClick = onClick,
-        modifier = modifier.width(
+        modifier = Modifier.width(
             width = LocalConfiguration.current.screenWidthDp.dp,
         ),
         color = Color(0x00000000),
