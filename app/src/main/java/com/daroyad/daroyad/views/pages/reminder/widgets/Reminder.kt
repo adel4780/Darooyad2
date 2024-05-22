@@ -35,7 +35,8 @@ fun Reminder(
     modifier: Modifier = Modifier,
 ) {
     Surface(
-        onClick = {},
+        onClick = {
+        },
         modifier = modifier.width(
             width = LocalConfiguration.current.screenWidthDp.dp,
         ),

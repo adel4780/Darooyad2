@@ -50,9 +50,13 @@ android {
     sourceSets {
         getByName("main") {
             assets {
-                srcDirs("src\\main\\assets", "src\\main\\assets\\images",
+                srcDirs(
                     "src\\main\\assets",
-                    "src\\main\\assets\\images\\characters", "src\\main\\assets", "src\\main\\assets\\icons",
+                    "src\\main\\assets\\images",
+                    "src\\main\\assets",
+                    "src\\main\\assets\\images\\characters",
+                    "src\\main\\assets",
+                    "src\\main\\assets\\icons",
                     "src\\main\\assets",
                     "src\\main\\assets\\logos"
                 )
@@ -65,6 +69,10 @@ dependencies {
 
     implementation("androidx.navigation:navigation-compose:2.7.7")
     implementation("io.coil-kt:coil-compose:2.2.2")
+
+    implementation("androidx.room:room-runtime:2.5.1")
+    annotationProcessor("androidx.room:room-compiler:2.5.1")
+    implementation("androidx.room:room-ktx:2.5.1")
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")

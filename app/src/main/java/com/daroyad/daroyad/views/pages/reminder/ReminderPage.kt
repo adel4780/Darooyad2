@@ -8,6 +8,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.daroyad.daroyad.MedicineScreen
 import com.daroyad.daroyad.views.pages.prescriptions.widgets.AddPrescription
 import com.daroyad.daroyad.views.pages.prescriptions.widgets.PrescriptionsEmpty
 import com.daroyad.daroyad.views.pages.reminder.widgets.Reminder

@@ -54,6 +54,7 @@ fun PrescriptionPage(
         }
 
     }
+
     Scaffold(
         topBar = {
             TopAppBar(title = title, modifier, navController)
