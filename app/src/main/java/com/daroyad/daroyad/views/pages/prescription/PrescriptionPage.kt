@@ -1,4 +1,4 @@
-package com.daroyad.daroyad.views.pages.prescription.widgets
+package com.daroyad.daroyad.views.pages.prescription
 
 
 import androidx.compose.foundation.layout.Arrangement

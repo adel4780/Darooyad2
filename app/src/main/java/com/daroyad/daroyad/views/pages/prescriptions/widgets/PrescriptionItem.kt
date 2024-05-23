@@ -1,14 +1,12 @@
 package com.daroyad.daroyad.views.pages.prescriptions.widgets
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
@@ -27,11 +25,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.daroyad.daroyad.R
-import com.daroyad.daroyad.views.pages.reminder.widgets.ReminderInfo
 import androidx.navigation.NavHostController
+import com.daroyad.daroyad.models.entities.Prescription
 
 @Composable
-fun Prescription(
+fun PrescriptionItem(
+    prescription: Prescription,
     navController: NavHostController,
     modifier: Modifier = Modifier,
 ) {
@@ -59,7 +58,7 @@ fun Prescription(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "دکتر علی حسن زاده",
+                    text = prescription.doctorName,
                     style = TextStyle(
                         color = Color(0xFF2D89FF),
                         fontSize = 20.0.sp,
@@ -89,11 +88,11 @@ fun Prescription(
             )
             PrescriptionInfo(
                 title = R.string.patient_name,
-                info = " سیما شیرزاد",
+                info = prescription.patientName,
             )
             PrescriptionInfo(
                 title = R.string.visit_date,
-                info = " ۱۴۰۳/۰۱/۰۱",
+                info = prescription.date.toString(),
             )
             Divider(
                 modifier = Modifier

@@ -9,7 +9,7 @@ import com.daroyad.daroyad.views.pages.onboarding.OnboardingPage
 import com.daroyad.daroyad.views.pages.splash.SplashPage
 import com.daroyad.daroyad.views.pages.medicine.MedicinePage
 import com.daroyad.daroyad.views.pages.medicines.MedicinesPage
-import com.daroyad.daroyad.views.pages.prescription.widgets.PrescriptionPage
+import com.daroyad.daroyad.views.pages.prescription.PrescriptionPage
 
 @Composable
 fun Nav() {
@@ -32,7 +32,7 @@ fun Nav() {
             PrescriptionPage(navHostController, isShow = true)
         }
         composable(PagesRouteEnum.ADD_PRESCRIPTIONS.route) {
-            PrescriptionPage(navHostController)
+            PrescriptionPage(navHostController, isEdit = true)
         }
         composable(PagesRouteEnum.EDIT_PRESCRIPTIONS.route) {
             PrescriptionPage(navHostController, isEdit = true)

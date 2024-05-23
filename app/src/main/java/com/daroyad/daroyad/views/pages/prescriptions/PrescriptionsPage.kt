@@ -17,15 +17,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.daroyad.daroyad.R
+import com.daroyad.daroyad.models.database.DatabaseProvider
+import com.daroyad.daroyad.models.factories.MedicineViewModelFactory
+import com.daroyad.daroyad.models.factories.PrescriptionViewModelFactory
+import com.daroyad.daroyad.view_models.MedicineViewModel
+import com.daroyad.daroyad.view_models.PrescriptionViewModel
 import com.daroyad.daroyad.views.pages.main.widgets.MainBottomBar
 import com.daroyad.daroyad.views.pages.main.widgets.MainTopBar
 import com.daroyad.daroyad.views.pages.menu.MenuPage
 import com.daroyad.daroyad.views.pages.prescriptions.widgets.AddPrescription
-import com.daroyad.daroyad.views.pages.prescriptions.widgets.Prescription
+import com.daroyad.daroyad.views.pages.prescriptions.widgets.PrescriptionItem
 import com.daroyad.daroyad.views.pages.prescriptions.widgets.PrescriptionsEmpty
 import com.daroyad.daroyad.views.pages.reminder.ReminderPage
 
@@ -34,6 +41,13 @@ fun PrescriptionsPage(
     navController: NavHostController,
     modifier: Modifier = Modifier,
 ) {
+    val context = LocalContext.current
+    val database = DatabaseProvider.getDatabase(context)
+    val factory = PrescriptionViewModelFactory(database)
+    val prescriptionViewModel: PrescriptionViewModel = viewModel(factory = factory)
+
+    val prescriptions = prescriptionViewModel.prescriptions
+
     Scaffold(
         floatingActionButton = { AddPrescription(navController, modifier) },
         containerColor = Color(0x00000000),
@@ -41,12 +55,19 @@ fun PrescriptionsPage(
         Box(
             modifier = Modifier.padding(innerPadding),
         ) {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize(),
-            ) {
-                items(10) {
-                    Prescription(navController = navController)
+            if (prescriptions.isEmpty()) {
+                PrescriptionsEmpty()
+            } else {
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                ) {
+                    items(prescriptions.size) {
+                        PrescriptionItem(
+                            prescription = prescriptions[it],
+                            navController = navController,
+                        )
+                    }
                 }
             }
         }
