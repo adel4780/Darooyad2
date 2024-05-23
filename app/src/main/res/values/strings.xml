@@ -29,8 +29,8 @@
     <string name="medicine_name">نام دارو</string>
     <string name="description">توضیحات</string>
     <string name="write_description">لطفاً توضیحی بنویسید.(اختیاری)</string>
-    <string name="add_prescriptions">افزودن نسخه</string>
-    <string name="edit_prescriptions">تغییر نسخه</string>
+    <string name="add_prescription">افزودن نسخه</string>
+    <string name="edit_prescription">تغییر نسخه</string>
     <string name="prescription">نسخه</string>
     <string name="add_medicine">افزودن دارو</string>
     <string name="info_medicine">مشخصات دارو</string>

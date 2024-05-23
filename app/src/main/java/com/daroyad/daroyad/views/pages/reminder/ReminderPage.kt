@@ -10,15 +10,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.daroyad.daroyad.MedicineScreen
 import com.daroyad.daroyad.models.database.DatabaseProvider
-import com.daroyad.daroyad.models.factories.PrescriptionViewModelFactory
 import com.daroyad.daroyad.models.factories.ReminderViewModelFactory
-import com.daroyad.daroyad.view_models.PrescriptionViewModel
 import com.daroyad.daroyad.view_models.ReminderViewModel
-import com.daroyad.daroyad.views.pages.prescriptions.widgets.AddPrescription
-import com.daroyad.daroyad.views.pages.prescriptions.widgets.PrescriptionItem
-import com.daroyad.daroyad.views.pages.prescriptions.widgets.PrescriptionsEmpty
 import com.daroyad.daroyad.views.pages.reminder.widgets.ReminderEmpty
 import com.daroyad.daroyad.views.pages.reminder.widgets.ReminderItem
 

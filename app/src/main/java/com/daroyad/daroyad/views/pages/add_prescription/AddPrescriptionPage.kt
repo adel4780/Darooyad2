@@ -1,4 +1,4 @@
-package com.daroyad.daroyad.views.pages.prescription
+package com.daroyad.daroyad.views.pages.add_prescription
 
 
 import androidx.compose.foundation.layout.Arrangement
@@ -11,13 +11,19 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Divider
+import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
@@ -26,46 +32,86 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.daroyad.daroyad.R
-import com.daroyad.daroyad.core.nav.PagesRouteEnum
+import com.daroyad.daroyad.models.database.DatabaseProvider
 import com.daroyad.daroyad.models.entities.Prescription
-import com.daroyad.daroyad.views.pages.prescription.widgets.MedicineItem
+import com.daroyad.daroyad.models.factories.PrescriptionViewModelFactory
+import com.daroyad.daroyad.view_models.PrescriptionViewModel
 import com.daroyad.daroyad.views.widgets.MyButton
 import com.daroyad.daroyad.views.widgets.MyTextField
 import com.daroyad.daroyad.views.widgets.TopAppBar
+import java.util.Date
 
 
 @Composable
-fun PrescriptionPage(
-    prescription: Prescription,
+fun AddPrescriptionPage(
     navController: NavHostController,
     modifier: Modifier = Modifier,
 ) {
+    val context = LocalContext.current
+    val database = DatabaseProvider.getDatabase(context)
+    val factory = PrescriptionViewModelFactory(database)
+    val prescriptionViewModel: PrescriptionViewModel = viewModel(factory = factory)
+
+    var doctorName by remember {
+        mutableStateOf("")
+    }
+    var patientName by remember {
+        mutableStateOf("")
+    }
+    var data by remember {
+        mutableStateOf("")
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
                 title = stringResource(
-                    id = R.string.prescription,
+                    id = R.string.add_prescription,
                 ),
                 modifier,
                 navController,
             )
         },
+        floatingActionButton = {
+            MyButton(
+                onClick = {
+                    prescriptionViewModel.addPrescription(
+                        Prescription(
+                            doctorName = doctorName,
+                            patientName = patientName,
+                            date = Date(),
+                            medicines = emptyList(),
+                        ),
+                    )
+                },
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+                    .fillMaxWidth(),
+                text = stringResource(
+                    id = R.string.add,
+                ),
+            )
+        },
+        floatingActionButtonPosition = FabPosition.Center,
         containerColor = Color(0xffffffff),
     ) {
         Column(
             modifier
                 .padding(it)
                 .fillMaxHeight(),
-            verticalArrangement = Arrangement.SpaceBetween
+            verticalArrangement = Arrangement.SpaceBetween,
         ) {
             Column(
-                verticalArrangement = Arrangement.SpaceBetween
+                verticalArrangement = Arrangement.SpaceBetween,
             ) {
                 MyTextField(
-                    text = prescription.doctorName,
-                    onTextChanged = {},
+                    text = doctorName,
+                    onTextChanged = { newText ->
+                        doctorName = newText
+                    },
                     placeholder = "نیما یزدی",
                     modifier = Modifier
                         .padding(horizontal = 16.dp, vertical = 8.dp)
@@ -80,12 +126,14 @@ fun PrescriptionPage(
                         )
                     },
                     helperMessage = stringResource(id = R.string.doctor_name),
-                    editable = false,
+                    editable = true,
                 )
                 Spacer(modifier = Modifier.height(40.dp))
                 MyTextField(
-                    text = prescription.patientName,
-                    onTextChanged = {},
+                    text = patientName,
+                    onTextChanged = { newText ->
+                        patientName = newText
+                    },
                     placeholder = "حسین مولوی",
                     modifier = Modifier
                         .padding(horizontal = 16.dp, vertical = 8.dp)
@@ -100,12 +148,14 @@ fun PrescriptionPage(
                         )
                     },
                     helperMessage = stringResource(id = R.string.patient_name),
-                    editable = false,
+                    editable = true,
                 )
                 Spacer(modifier = Modifier.height(40.dp))
                 MyTextField(
-                    text = prescription.date.toString(),
-                    onTextChanged = {},
+                    text = data,
+                    onTextChanged = { newText ->
+                        data = newText
+                    },
                     placeholder = "۱۴۰۲/۰۲/۰۲",
                     modifier = Modifier
                         .padding(horizontal = 16.dp, vertical = 8.dp)
@@ -120,7 +170,7 @@ fun PrescriptionPage(
                         )
                     },
                     helperMessage = stringResource(id = R.string.data),
-                    editable = false,
+                    editable = true,
                 )
             }
             Column(
@@ -130,14 +180,11 @@ fun PrescriptionPage(
                     modifier = Modifier.padding(horizontal = 20.dp, vertical = 4.dp),
                     text = stringResource(id = R.string.medicines),
                     style = TextStyle(
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight(700),
-                        fontFamily = FontFamily(
+                        fontSize = 18.sp, fontWeight = FontWeight(700), fontFamily = FontFamily(
                             Font(
                                 R.font.iranyekan_regular,
                             ),
-                        ),
-                        color = Color.Gray
+                        ), color = Color.Gray
                     ),
                 )
                 Divider(color = Color.Gray)
@@ -146,27 +193,9 @@ fun PrescriptionPage(
                         .weight(1f, false)
                         .height(370.dp)
                 ) {
-                    items(prescription.medicines.size) { medicine ->
-                        MedicineItem(
-                            medicine = prescription.medicines[medicine],
-                            navController = navController,
-                        )
-                    }
+
                 }
             }
-            MyButton(
-                onClick = {
-                    navController.navigate(
-                        PagesRouteEnum.EDIT_PRESCRIPTION.route
-                    )
-                },
-                modifier = Modifier
-                    .padding(horizontal = 16.dp)
-                    .fillMaxWidth(),
-                text = stringResource(
-                    id = R.string.edit,
-                ),
-            )
         }
     }
 }

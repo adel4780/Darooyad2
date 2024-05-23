@@ -4,21 +4,15 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.daroyad.daroyad.models.database.DatabaseProvider
 import com.daroyad.daroyad.models.entities.Medicine
+import com.daroyad.daroyad.models.factories.MedicineViewModelFactory
 import com.daroyad.daroyad.view_models.MedicineViewModel
 import java.time.LocalTime
 import java.util.Date
-
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.ui.platform.LocalContext
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.daroyad.daroyad.models.database.DatabaseProvider
-import com.daroyad.daroyad.models.factories.MedicineViewModelFactory
 
 @Composable
 fun MedicineScreen() {
