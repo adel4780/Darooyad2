@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
@@ -29,23 +31,26 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.daroyad.daroyad.R
+import com.daroyad.daroyad.core.nav.GlobalState
+import com.daroyad.daroyad.models.entities.Medicine
 
 @Composable
-fun Medicine(
+fun MedicineItem(
+    medicine: Medicine,
     navController: NavHostController,
     isEdit: Boolean,
-    onClick: () -> Unit = {
-        navController.navigate("show_medicine")
-    },
     isAdd: Boolean = false,
     ) {
     val text = if (isAdd) {
         stringResource(id = R.string.add_medicine)
     } else {
-        "استامینوفن"
+        medicine.medicineName
     }
     Surface(
-        onClick = onClick,
+        onClick = {
+            GlobalState.medicine = medicine
+            navController.navigate("show_medicine")
+        },
         modifier = Modifier.width(
             width = LocalConfiguration.current.screenWidthDp.dp,
         ),
@@ -78,31 +83,18 @@ fun Medicine(
                         },
                     )
                 )
-                if (isEdit)
-                    Icon(
-                        modifier = Modifier
-                            .padding(horizontal = 20.dp, vertical = 8.dp)
-                            .size(30.0.dp)
-                            .clickable {
-                                if (isAdd) {
-                                    navController.navigate("medicines_page")
-                                }
-                            },
-                        imageVector = ImageVector.vectorResource(
-                            id = if (isAdd) {
-                                R.drawable.message_add
-                            } else {
-                                R.drawable.message_minus
-                            }
-                        ),
-                        contentDescription = "bottom_bar_item_active",
-                        tint = if (isAdd) {
-                            Color(0xFFE3E3E3)
-                        } else {
-                            Color(0xFFFF1F01)
-                        }
+                Icon(
+                    modifier = Modifier
+                        .padding(horizontal = 20.dp, vertical = 8.dp)
+                        .size(30.0.dp)
+                        .clickable {
+                            GlobalState.prescription.medicines.toMutableList().add(medicine)
+                        },
+                    imageVector =  Icons.Default.Add,
+                    contentDescription = "bottom_bar_item_active",
+                    tint = Color.Blue
 
-                    )
+                )                    
             }
             Divider(
                 modifier = Modifier

@@ -26,11 +26,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.daroyad.daroyad.R
+import com.daroyad.daroyad.core.nav.GlobalState
 import com.daroyad.daroyad.core.nav.PagesRouteEnum
 import com.daroyad.daroyad.models.entities.Prescription
-import com.squareup.moshi.Moshi
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 @Composable
 fun PrescriptionItem(
@@ -38,17 +38,12 @@ fun PrescriptionItem(
     navController: NavHostController,
     modifier: Modifier = Modifier,
 ) {
-    val moshi = Moshi.Builder().build()
-    val jsonAdapter = moshi.adapter(Prescription::class.java).lenient()
-    val prescriptionJson = jsonAdapter.toJson(prescription)
-
     Surface(
         onClick = {
+            GlobalState.prescription = prescription
+
             navController.navigate(
-                PagesRouteEnum.PRESCRIPTION.route.replace(
-                    "{prescription}",
-                    prescriptionJson,
-                ),
+                PagesRouteEnum.PRESCRIPTION.route,
             )
         },
         modifier = modifier.width(
@@ -107,7 +102,7 @@ fun PrescriptionItem(
             )
             PrescriptionInfo(
                 title = R.string.visit_date,
-                info = prescription.date.toString(),
+                info = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(prescription.date),
             )
             Divider(
                 modifier = Modifier

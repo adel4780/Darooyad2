@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.daroyad.daroyad.R
 import com.daroyad.daroyad.core.nav.PagesRouteEnum
+import com.daroyad.daroyad.core.nav.LoadPrescriptions as LoadPrescriptions
 
 @Composable
 fun AddPrescription(

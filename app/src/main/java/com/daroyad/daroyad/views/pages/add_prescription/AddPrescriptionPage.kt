@@ -10,12 +10,16 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Divider
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -30,19 +34,25 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.daroyad.daroyad.R
+import com.daroyad.daroyad.core.nav.GlobalState
+import com.daroyad.daroyad.core.nav.LoadPrescriptions
 import com.daroyad.daroyad.models.database.DatabaseProvider
 import com.daroyad.daroyad.models.entities.Prescription
 import com.daroyad.daroyad.models.factories.PrescriptionViewModelFactory
 import com.daroyad.daroyad.view_models.PrescriptionViewModel
+import com.daroyad.daroyad.views.pages.add_prescription.widgets.MedicineItem
 import com.daroyad.daroyad.views.widgets.MyButton
 import com.daroyad.daroyad.views.widgets.MyTextField
 import com.daroyad.daroyad.views.widgets.TopAppBar
+import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 
 
 @Composable
@@ -55,14 +65,21 @@ fun AddPrescriptionPage(
     val factory = PrescriptionViewModelFactory(database)
     val prescriptionViewModel: PrescriptionViewModel = viewModel(factory = factory)
 
+    var add by remember {
+        mutableStateOf(false)
+    }
     var doctorName by remember {
         mutableStateOf("")
     }
     var patientName by remember {
         mutableStateOf("")
     }
-    var data by remember {
-        mutableStateOf("")
+
+    var data by remember { mutableStateOf("") }
+    val dateFormat = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
+
+    if (add) {
+        LoadPrescriptions()
     }
 
     Scaffold(
@@ -82,10 +99,14 @@ fun AddPrescriptionPage(
                         Prescription(
                             doctorName = doctorName,
                             patientName = patientName,
-                            date = Date(),
-                            medicines = emptyList(),
+                            date = dateFormat.parse(data),
+                            medicines = GlobalState.prescription.medicines,
                         ),
                     )
+
+                    navController.navigateUp()
+
+                    add = true
                 },
                 modifier = Modifier
                     .padding(horizontal = 16.dp)
@@ -153,8 +174,8 @@ fun AddPrescriptionPage(
                 Spacer(modifier = Modifier.height(40.dp))
                 MyTextField(
                     text = data,
-                    onTextChanged = { newText ->
-                        data = newText
+                    onTextChanged = { newValue ->
+                        data = newValue
                     },
                     placeholder = "۱۴۰۲/۰۲/۰۲",
                     modifier = Modifier
@@ -193,7 +214,13 @@ fun AddPrescriptionPage(
                         .weight(1f, false)
                         .height(370.dp)
                 ) {
-
+                    item {
+                        MedicineItem(
+                            navController = navController,
+                            isAdd = true,
+                            isEdit = true,
+                        )
+                    }
                 }
             }
         }

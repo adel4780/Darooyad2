@@ -28,20 +28,23 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.daroyad.daroyad.R
+import com.daroyad.daroyad.core.nav.GlobalState
 import com.daroyad.daroyad.core.nav.PagesRouteEnum
 import com.daroyad.daroyad.models.entities.Prescription
 import com.daroyad.daroyad.views.pages.prescription.widgets.MedicineItem
 import com.daroyad.daroyad.views.widgets.MyButton
 import com.daroyad.daroyad.views.widgets.MyTextField
 import com.daroyad.daroyad.views.widgets.TopAppBar
-
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 @Composable
 fun PrescriptionPage(
-    prescription: Prescription,
     navController: NavHostController,
     modifier: Modifier = Modifier,
 ) {
+    val prescription by GlobalState::prescription
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -104,7 +107,7 @@ fun PrescriptionPage(
                 )
                 Spacer(modifier = Modifier.height(40.dp))
                 MyTextField(
-                    text = prescription.date.toString(),
+                    text = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(prescription.date),
                     onTextChanged = {},
                     placeholder = "۱۴۰۲/۰۲/۰۲",
                     modifier = Modifier

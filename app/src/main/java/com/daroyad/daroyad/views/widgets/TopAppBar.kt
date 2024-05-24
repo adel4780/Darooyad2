@@ -31,8 +31,7 @@ import com.daroyad.daroyad.R
 fun TopAppBar(
     title: String,
     modifier: Modifier,
-    navController: NavHostController
-
+    navController: NavHostController,
 ) {
     Row(
         modifier = modifier
@@ -82,7 +81,9 @@ fun TopAppBar(
             contentDescription = "logo_white",
             modifier = modifier
                 .size(30.0.dp)
-                .clickable { navController.navigateUp() },
+                .clickable {
+                    navController.navigateUp()
+                },
             tint = Color(0xFFFFFFFF),
         )
     }

@@ -22,6 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
@@ -30,11 +31,23 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.daroyad.daroyad.R
+import com.daroyad.daroyad.core.nav.GlobalState
+import com.daroyad.daroyad.models.database.DatabaseProvider
+import com.daroyad.daroyad.models.entities.Medicine
+import com.daroyad.daroyad.models.factories.MedicineViewModelFactory
+import com.daroyad.daroyad.models.factories.PrescriptionViewModelFactory
+import com.daroyad.daroyad.view_models.MedicineViewModel
+import com.daroyad.daroyad.view_models.PrescriptionViewModel
 import com.daroyad.daroyad.views.widgets.MyButton
 import com.daroyad.daroyad.views.widgets.MyTextField
 import com.daroyad.daroyad.views.widgets.TopAppBar
+import java.text.SimpleDateFormat
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 
 @Composable
@@ -44,13 +57,20 @@ fun MedicinePage(
     isEdit: Boolean = false,
     isShow: Boolean = false,
 ) {
+    val medicine by GlobalState::medicine
+
+    val context = LocalContext.current
+    val database = DatabaseProvider.getDatabase(context)
+    val factory = MedicineViewModelFactory(database)
+    val medicineViewModel: MedicineViewModel = viewModel(factory = factory)
+
     val title = if (isShow) {
-        stringResource(id=R.string.info_medicine)
+        stringResource(id = R.string.info_medicine)
     } else {
         if (isEdit) {
-            stringResource(id=R.string.edit_medicine)
+            stringResource(id = R.string.edit_medicine)
         } else {
-            stringResource(id=R.string.add_medicine)
+            stringResource(id = R.string.add_medicine)
         }
 
     }
@@ -63,7 +83,7 @@ fun MedicinePage(
         var medicineName by remember {
             mutableStateOf(
                 if (isEdit || isShow) {
-                    "استامینوفن"
+                    medicine.medicineName
                 } else {
                     ""
                 }
@@ -72,16 +92,27 @@ fun MedicinePage(
         var period by remember {
             mutableStateOf(
                 if (isEdit || isShow) {
-                    "1"
+                    medicine.period
                 } else {
                     ""
+                }
+            )
+        }
+        var number by remember {
+            mutableStateOf(
+                if (isEdit || isShow) {
+                    medicine.number
+                } else {
+                    1
                 }
             )
         }
         var data by remember {
             mutableStateOf(
                 if (isEdit || isShow) {
-                    "۱۴۰۳/۰۱/۰۱"
+                    SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(
+                        medicine.startDate
+                    )
                 } else {
                     ""
                 }
@@ -90,7 +121,9 @@ fun MedicinePage(
         var time by remember {
             mutableStateOf(
                 if (isEdit || isShow) {
-                    "۰۹:۰۰"
+                    DateTimeFormatter.ofPattern("HH:mm", Locale.getDefault()).format(
+                        medicine.startTime
+                    )
                 } else {
                     ""
                 }
@@ -99,7 +132,7 @@ fun MedicinePage(
         var description by remember {
             mutableStateOf(
                 if (isEdit || isShow) {
-                    "همزمان با داروی دیگری مصرف نشود."
+                    medicine.description
                 } else {
                     ""
                 }
@@ -139,9 +172,9 @@ fun MedicinePage(
                             modifier = modifier.size(30.0.dp),
                         )
                     },
-                    helperMessage =  stringResource(id=R.string.medicine_name),
+                    helperMessage = stringResource(id = R.string.medicine_name),
                     editable = !isShow,
-                    )
+                )
                 Spacer(modifier = Modifier.height(20.dp))
                 MyTextField(
                     text = period,
@@ -166,7 +199,34 @@ fun MedicinePage(
                             )
                         )
                     },
-                    helperMessage =  stringResource(id=R.string.period),
+                    helperMessage = stringResource(id = R.string.period),
+                    editable = !isShow,
+                )
+                Spacer(modifier = Modifier.height(20.dp))
+                MyTextField(
+                    text = number.toString(),
+                    onTextChanged = { newText ->
+                        period = newText
+                    },
+                    placeholder = "1",
+                    modifier = Modifier
+                        .padding(horizontal = 16.dp, vertical = 8.dp)
+                        .fillMaxWidth(),
+                    trailingIcon = {
+                        Text(
+                            text = period_time, style = TextStyle(
+                                color = Color(0xff000000),
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight(600),
+                                fontFamily = FontFamily(
+                                    Font(
+                                        R.font.iranyekan_regular,
+                                    ),
+                                ),
+                            )
+                        )
+                    },
+                    helperMessage = "تعداد",
                     editable = !isShow,
                 )
                 Spacer(modifier = Modifier.height(20.dp))
@@ -188,7 +248,7 @@ fun MedicinePage(
                             modifier = modifier.size(30.0.dp),
                         )
                     },
-                    helperMessage =  stringResource(id=R.string.start_date),
+                    helperMessage = stringResource(id = R.string.start_date),
                     editable = !isShow,
                 )
                 Spacer(modifier = Modifier.height(20.dp))
@@ -210,7 +270,7 @@ fun MedicinePage(
                             modifier = modifier.size(30.0.dp),
                         )
                     },
-                    helperMessage =  stringResource(id=R.string.start_time),
+                    helperMessage = stringResource(id = R.string.start_time),
                     editable = !isShow,
                 )
                 Spacer(modifier = Modifier.height(20.dp))
@@ -219,7 +279,7 @@ fun MedicinePage(
                     onTextChanged = { newText ->
                         description = newText
                     },
-                    placeholder =  stringResource(id=R.string.write_description),
+                    placeholder = stringResource(id = R.string.write_description),
                     modifier = Modifier
                         .padding(horizontal = 16.dp, vertical = 8.dp)
                         .fillMaxWidth(),
@@ -232,7 +292,7 @@ fun MedicinePage(
                             modifier = modifier.size(30.0.dp),
                         )
                     },
-                    helperMessage =  stringResource(id=R.string.description),
+                    helperMessage = stringResource(id = R.string.description),
                     editable = !isShow,
                 )
             }
@@ -241,16 +301,29 @@ fun MedicinePage(
                     if (isShow) {
                         navController.navigate("edit_medicine")
                     } else {
-                        //todo add or edit medicine
+                        medicineViewModel.addMedicine(
+                            Medicine(
+                                medicineName = medicineName,
+                                period = period,
+                                number = number,
+                                startDate = SimpleDateFormat(
+                                    "yyyy/MM/dd",
+                                    Locale.getDefault()
+                                ).parse(data),
+                                startTime = LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm", Locale.getDefault())),
+                                description = description,
+
+                                )
+                        )
                     }
                 },
                 modifier = Modifier
                     .padding(horizontal = 16.dp)
                     .fillMaxWidth(),
                 text = if (isEdit || isShow) {
-                    stringResource(id=R.string.edit)
+                    stringResource(id = R.string.edit)
                 } else {
-                    stringResource(id=R.string.add)
+                    stringResource(id = R.string.add)
                 }
             )
         }

@@ -11,10 +11,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
+import com.daroyad.daroyad.views.pages.GlobalState.prescriptions.PrescriptionsPage
 import com.daroyad.daroyad.views.pages.main.widgets.MainBottomBar
 import com.daroyad.daroyad.views.pages.main.widgets.MainTopBar
 import com.daroyad.daroyad.views.pages.menu.MenuPage
-import com.daroyad.daroyad.views.pages.prescriptions.PrescriptionsPage
 import com.daroyad.daroyad.views.pages.reminder.ReminderPage
 
 @Composable

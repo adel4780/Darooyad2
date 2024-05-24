@@ -1,4 +1,4 @@
-package com.daroyad.daroyad.views.pages.prescriptions
+package com.daroyad.daroyad.views.pages.GlobalState.prescriptions
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,6 +11,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.daroyad.daroyad.core.nav.GlobalState
+import com.daroyad.daroyad.core.nav.LoadPrescriptions
 import com.daroyad.daroyad.models.database.DatabaseProvider
 import com.daroyad.daroyad.models.factories.PrescriptionViewModelFactory
 import com.daroyad.daroyad.view_models.PrescriptionViewModel
@@ -23,13 +25,7 @@ fun PrescriptionsPage(
     navController: NavHostController,
     modifier: Modifier = Modifier,
 ) {
-    val context = LocalContext.current
-    val database = DatabaseProvider.getDatabase(context)
-    val factory = PrescriptionViewModelFactory(database)
-    val prescriptionViewModel: PrescriptionViewModel = viewModel(factory = factory)
-
-    val prescriptions = prescriptionViewModel.prescriptions
-
+    LoadPrescriptions()
     Scaffold(
         floatingActionButton = { AddPrescription(navController, modifier) },
         containerColor = Color(0x00000000),
@@ -37,16 +33,16 @@ fun PrescriptionsPage(
         Box(
             modifier = Modifier.padding(innerPadding),
         ) {
-            if (prescriptions.isEmpty()) {
+            if (GlobalState.prescriptions.isEmpty()) {
                 PrescriptionsEmpty()
             } else {
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxSize(),
                 ) {
-                    items(prescriptions.size) {
+                    items(GlobalState.prescriptions.size) {
                         PrescriptionItem(
-                            prescription = prescriptions[it],
+                            prescription = GlobalState.prescriptions[it],
                             navController = navController,
                         )
                     }

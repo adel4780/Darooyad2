@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.daroyad.daroyad.R
+import com.daroyad.daroyad.core.nav.PagesRouteEnum
 
 @Composable
 fun MedicineItem(
@@ -36,7 +37,7 @@ fun MedicineItem(
     modifier: Modifier = Modifier,
     isEdit: Boolean,
     onClick: () -> Unit = {
-        navController.navigate("show_medicine")
+        navController.navigate(PagesRouteEnum.MEDICINES_PAGE.route)
     },
     isAdd: Boolean = false,
 ) {
