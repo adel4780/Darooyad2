@@ -1,5 +1,6 @@
 package com.daroyad.daroyad.views.pages.onboarding
 
+import SmoothPageIndicator
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.layout.Arrangement
