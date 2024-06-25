@@ -21,6 +21,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.daroyad.daroyad.R
 
+/**
+ * Composable function to display an active bottom bar item with an icon and title.
+ *
+ * @param title The resource ID of the title string.
+ * @param icon The resource ID of the icon vector.
+ * @param modifier The modifier to be applied to the component.
+ */
 @Composable
 fun BottomBarItemActive(
     title: Int,

@@ -18,6 +18,13 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import com.daroyad.daroyad.R
 
+/**
+ * Composable function to display the main bottom bar with navigation items.
+ *
+ * @param bottomBarIndex The index of the currently selected bottom bar item.
+ * @param onClick The action to perform when a bottom bar item is clicked.
+ * @param modifier The modifier to be applied to the component.
+ */
 @Composable
 fun MainBottomBar(
     bottomBarIndex: Int,

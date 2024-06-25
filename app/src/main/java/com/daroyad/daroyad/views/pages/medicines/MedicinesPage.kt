@@ -28,6 +28,12 @@ import com.daroyad.daroyad.views.pages.medicines.widgets.MedicineItem
 import com.daroyad.daroyad.views.widgets.MyButton
 import com.daroyad.daroyad.views.widgets.TopAppBar
 
+/**
+ * Composable function to display the Medicines Page, which shows a list of medicines and provides an option to add new medicines.
+ *
+ * @param navController The [NavHostController] for navigation.
+ * @param modifier The modifier to be applied to the component.
+ */
 @Composable
 fun MedicinesPage(
     navController: NavHostController,
@@ -45,8 +51,7 @@ fun MedicinesPage(
                 navController,
             )
         },
-
-        ) { innerPadding ->
+    ) { innerPadding ->
         Box(
             modifier = Modifier.padding(innerPadding),
         ) {
@@ -57,7 +62,8 @@ fun MedicinesPage(
             ) {
                 if (GlobalState.medicines.isEmpty()) {
                     Box(
-                        contentAlignment = Alignment.Center
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier.fillMaxHeight()
                     ) {
                         Text(
                             text = "هنوز دارویی وجود ندارد.",
@@ -94,8 +100,7 @@ fun MedicinesPage(
                     modifier = Modifier
                         .padding(horizontal = 16.dp)
                         .fillMaxWidth(),
-                    text =
-                    stringResource(id = R.string.add)
+                    text = stringResource(id = R.string.add)
                 )
             }
         }

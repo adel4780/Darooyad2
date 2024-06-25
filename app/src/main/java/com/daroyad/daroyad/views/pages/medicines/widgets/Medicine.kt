@@ -1,6 +1,5 @@
 package com.daroyad.daroyad.views.pages.medicines.widgets
 
-
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -32,13 +31,21 @@ import com.daroyad.daroyad.R
 import com.daroyad.daroyad.core.nav.GlobalState
 import com.daroyad.daroyad.models.entities.Medicine
 
+/**
+ * Composable function to display a medicine item in a list.
+ *
+ * @param medicine The [Medicine] entity to display.
+ * @param navController The [NavHostController] for navigation.
+ * @param isEdit Indicates if the item is in edit mode.
+ * @param isAdd Indicates if the item is for adding a new medicine.
+ */
 @Composable
 fun MedicineItem(
     medicine: Medicine,
     navController: NavHostController,
     isEdit: Boolean,
     isAdd: Boolean = false,
-    ) {
+) {
     val text = if (isAdd) {
         stringResource(id = R.string.add_medicine)
     } else {
@@ -88,11 +95,10 @@ fun MedicineItem(
                         .clickable {
                             GlobalState.prescription.medicines.toMutableList().add(medicine)
                         },
-                    imageVector =  Icons.Default.Add,
+                    imageVector = Icons.Default.Add,
                     contentDescription = "bottom_bar_item_active",
                     tint = Color.Blue
-
-                )                    
+                )
             }
             Divider(
                 modifier = Modifier

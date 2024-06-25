@@ -1,6 +1,5 @@
 package com.daroyad.daroyad.views.pages.medicine
 
-
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -47,7 +46,14 @@ import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
-
+/**
+ * Composable function to display the Medicine Page, which allows adding, editing, and viewing medicine details.
+ *
+ * @param navController The [NavHostController] for navigation.
+ * @param modifier The modifier to be applied to the component.
+ * @param isEdit Indicates if the page is in edit mode.
+ * @param isShow Indicates if the page is in view mode.
+ */
 @Composable
 fun MedicinePage(
     navController: NavHostController,
@@ -70,8 +76,8 @@ fun MedicinePage(
         } else {
             stringResource(id = R.string.add_medicine)
         }
-
     }
+
     Scaffold(
         topBar = {
             TopAppBar(title = title, modifier, navController)
@@ -137,10 +143,9 @@ fun MedicinePage(
             )
         }
         val period_time by remember {
-            mutableStateOf(
-                "ساعت"
-            )
+            mutableStateOf("ساعت")
         }
+
         Column(
             modifier
                 .padding(it)
@@ -310,8 +315,7 @@ fun MedicinePage(
                                 ).parse(data),
                                 startTime = LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm", Locale.getDefault())),
                                 description = description,
-
-                                )
+                            )
                         )
                     }
                 },

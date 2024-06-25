@@ -24,6 +24,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.daroyad.daroyad.R
 
+/**
+ * Composable function to display an inactive bottom bar item with an icon and title.
+ *
+ * @param title The resource ID of the title string.
+ * @param icon The resource ID of the icon vector.
+ * @param onClick The action to perform when the item is clicked.
+ * @param modifier The modifier to be applied to the component.
+ */
 @Composable
 fun BottomBarItemInactive(
     title: Int,
@@ -55,7 +63,7 @@ fun BottomBarItemInactive(
                 imageVector = ImageVector.vectorResource(
                     id = icon,
                 ),
-                contentDescription = "bottom_bar_item_active",
+                contentDescription = "bottom_bar_item_inactive",
                 modifier = modifier.size(20.0.dp),
                 tint = Color(0xFFAEBBCC),
             )

@@ -25,6 +25,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.daroyad.daroyad.R
 
+/**
+ * Composable function to display the main top bar with the app name and logo.
+ *
+ * @param modifier The modifier to be applied to the component.
+ */
 @Composable
 fun MainTopBar(
     modifier: Modifier,

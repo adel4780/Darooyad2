@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
+    id("org.jetbrains.dokka") version "1.9.20"
 }
 
 android {
@@ -70,6 +71,7 @@ dependencies {
 
     implementation("androidx.navigation:navigation-compose:2.7.7")
     androidTestImplementation("androidx.navigation:navigation-testing:2.7.7")
+    implementation("org.jetbrains.dokka:dokka-gradle-plugin:1.9.20")
 
     implementation("io.coil-kt:coil-compose:2.2.2")
 

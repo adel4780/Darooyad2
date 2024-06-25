@@ -27,6 +27,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.daroyad.daroyad.R
 
+/**
+ * Composable function to display the logout option in the menu.
+ *
+ * @param modifier The modifier to be applied to the component.
+ */
 @Composable
 fun Logout(
     modifier: Modifier = Modifier,

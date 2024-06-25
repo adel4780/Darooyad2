@@ -17,6 +17,12 @@ import com.daroyad.daroyad.views.pages.main.widgets.MainTopBar
 import com.daroyad.daroyad.views.pages.menu.MenuPage
 import com.daroyad.daroyad.views.pages.reminder.ReminderPage
 
+/**
+ * Composable function for the main page of the application.
+ *
+ * @param navHostController The [NavHostController] for navigation.
+ * @param modifier The modifier to be applied to the component.
+ */
 @Composable
 fun MainPage(
     navHostController: NavHostController,
