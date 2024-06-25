@@ -8,14 +8,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.daroyad.daroyad.core.nav.GlobalState
 import com.daroyad.daroyad.core.nav.LoadPrescriptions
-import com.daroyad.daroyad.models.database.DatabaseProvider
-import com.daroyad.daroyad.models.factories.PrescriptionViewModelFactory
-import com.daroyad.daroyad.view_models.PrescriptionViewModel
 import com.daroyad.daroyad.views.pages.prescriptions.widgets.AddPrescription
 import com.daroyad.daroyad.views.pages.prescriptions.widgets.PrescriptionItem
 import com.daroyad.daroyad.views.pages.prescriptions.widgets.PrescriptionsEmpty

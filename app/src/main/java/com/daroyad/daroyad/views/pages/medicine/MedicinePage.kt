@@ -38,9 +38,7 @@ import com.daroyad.daroyad.core.nav.GlobalState
 import com.daroyad.daroyad.models.database.DatabaseProvider
 import com.daroyad.daroyad.models.entities.Medicine
 import com.daroyad.daroyad.models.factories.MedicineViewModelFactory
-import com.daroyad.daroyad.models.factories.PrescriptionViewModelFactory
 import com.daroyad.daroyad.view_models.MedicineViewModel
-import com.daroyad.daroyad.view_models.PrescriptionViewModel
 import com.daroyad.daroyad.views.widgets.MyButton
 import com.daroyad.daroyad.views.widgets.MyTextField
 import com.daroyad.daroyad.views.widgets.TopAppBar

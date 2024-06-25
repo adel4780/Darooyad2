@@ -1,6 +1,5 @@
 package com.daroyad.daroyad.views.pages.add_prescription
 
-
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -9,15 +8,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Divider
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -34,7 +32,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -54,7 +51,12 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-
+/**
+ * Composable function for the Add Prescription Page.
+ *
+ * @param navController The [NavHostController] for navigation.
+ * @param modifier The modifier to be applied to the component.
+ */
 @Composable
 fun AddPrescriptionPage(
     navController: NavHostController,
@@ -75,7 +77,7 @@ fun AddPrescriptionPage(
         mutableStateOf("")
     }
 
-    var data by remember { mutableStateOf("") }
+    var date by remember { mutableStateOf("") }
     val dateFormat = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
 
     if (add) {
@@ -99,7 +101,7 @@ fun AddPrescriptionPage(
                         Prescription(
                             doctorName = doctorName,
                             patientName = patientName,
-                            date = dateFormat.parse(data),
+                            date = dateFormat.parse(date),
                             medicines = GlobalState.prescription.medicines,
                         ),
                     )
@@ -173,9 +175,9 @@ fun AddPrescriptionPage(
                 )
                 Spacer(modifier = Modifier.height(40.dp))
                 MyTextField(
-                    text = data,
+                    text = date,
                     onTextChanged = { newValue ->
-                        data = newValue
+                        date = newValue
                     },
                     placeholder = "۱۴۰۲/۰۲/۰۲",
                     modifier = Modifier

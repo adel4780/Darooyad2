@@ -30,7 +30,6 @@ import androidx.navigation.NavHostController
 import com.daroyad.daroyad.R
 import com.daroyad.daroyad.core.nav.GlobalState
 import com.daroyad.daroyad.core.nav.PagesRouteEnum
-import com.daroyad.daroyad.models.entities.Prescription
 import com.daroyad.daroyad.views.pages.prescription.widgets.MedicineItem
 import com.daroyad.daroyad.views.widgets.MyButton
 import com.daroyad.daroyad.views.widgets.MyTextField

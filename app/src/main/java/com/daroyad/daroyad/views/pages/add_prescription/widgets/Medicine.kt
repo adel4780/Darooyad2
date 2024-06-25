@@ -1,6 +1,5 @@
 package com.daroyad.daroyad.views.pages.add_prescription.widgets
 
-
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -31,6 +30,15 @@ import androidx.navigation.NavHostController
 import com.daroyad.daroyad.R
 import com.daroyad.daroyad.core.nav.PagesRouteEnum
 
+/**
+ * Composable function to display a medicine item.
+ *
+ * @param navController The [NavHostController] for navigation.
+ * @param modifier The modifier to be applied to the component.
+ * @param isEdit Indicates if the item is in edit mode.
+ * @param onClick The action to perform when the item is clicked.
+ * @param isAdd Indicates if the item is for adding a new medicine.
+ */
 @Composable
 fun MedicineItem(
     navController: NavHostController,
